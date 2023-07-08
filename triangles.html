@@ -1,0 +1,68 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Animated SVG</title>
+    <style>
+      :root {
+        --dark-color: #635bff;
+        --light-color: #80e9ff;
+      }
+
+      #darkGroup {
+        fill: var(--dark-color);
+      }
+      #lightGroup {
+        fill: var(--light-color);
+      }
+
+      [id^='dark'], [id^='light'] {
+        transition: all 1s ease;
+        opacity: 0.8;
+      }
+
+      /* initially off the viewport */
+      #dark2 {
+        transform: translateX(-100%);
+      }
+
+      /* animation */
+      svg:hover #light1 {
+        transform: translateX(20%);
+      }
+      svg:hover #dark1 {
+        transform: translateX(40%);
+        opacity: 0;
+      }
+      svg:hover #dark2 {
+        transform: translateX(0%);
+      }
+
+    </style>
+  </head>
+  <body>
+    <svg width="120" height="100" viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g id="triangles">
+        <g id="lightGroup">
+          <path id="light1" d="M49 48.268C50.3333 49.0378 50.3333 50.9623 49 51.7321L14.5 71.6506C13.1667 72.4204 11.5 71.4582 11.5 69.9186L11.5 30.0814C11.5 28.5418 13.1667 27.5796 14.5 28.3494L49 48.268Z" />
+        </g>
+        <g id="darkGroup">
+          <path id="dark1" d="M62 48.268C63.3333 49.0378 63.3333 50.9623 62 51.7321L27.5 71.6506C26.1667 72.4204 24.5 71.4582 24.5 69.9186L24.5 30.0814C24.5 28.5418 26.1667 27.5796 27.5 28.3494L62 48.268Z" />
+          <path id="dark2" d="M49 48.268C50.3333 49.0378 50.3333 50.9623 49 51.7321L14.5 71.6506C13.1667 72.4204 11.5 71.4582 11.5 69.9186L11.5 30.0814C11.5 28.5418 13.1667 27.5796 14.5 28.3494L49 48.268Z" />
+        </g>
+      </g>
+    </svg>
+      
+    <script>
+      const svg = document.getElementById('triangles');
+      const colors = ['red', 'blue', 'green', 'orange', 'pink', 'purple'];
+      const randomColor = () => colors[Math.floor(Math.random() * colors.length)];
+      svg.onclick = (e) => {
+        document.documentElement.style.cssText = `
+          --dark-color: ${randomColor()};
+          --light-color: ${randomColor()};
+        `;
+      }
+    </script>
+
+  </body>
+</html>
